@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/animation.css">
+    <script src="./images/svg.js"></script>
+    <title>Whatsapp Bot</title>
+</head>
+
+<body class="bg-background-gradient h-screen p-3">
+    <div class="hidden z-[10] left-0 top-0 w-full h-full overflow-auto bg-[rgb(0,0,0)] bg-[rgba(0,0,0,0.3)]">
+        <span class="loader fixed left-[48.5%] top-[47.5%]"></span>
+    </div>
+    <div class="container h-full min-w-full flex justify-center">
+
+        <!-- Account card (left section) -->
+        <div id="profil-container" class="container flex flex-wrap w-full justify-center place-items-center gap-4">
+
+        </div>
+
+        <!-- Add account button (center section) -->
+        <div class="container flex-none w-11 flex items-center">
+            <div id="add-btn"
+                class="h-11 w-full relative hover:cursor-pointer active:translate-y-1 active:translate-x-[0.10rem] ">
+                <svg height="44" width="44" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="22" cy="22" r="20" class="shape" height="44" width="44"></circle>
+                </svg>
+                <div class="w-full h-full top-0 left-0 absolute flex justify-center items-center">
+                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 42 42"
+                        style="enable-background:new 0 0 42 42;" xml:space="preserve" width="50%" height="50%">
+                        <path fill="#606060" d="M37.059,16H26V4.941C26,2.224,23.718,0,21,0s-5,2.224-5,4.941V16H4.941C2.224,16,0,18.282,0,21s2.224,5,4.941,5H16v11.059
+            C16,39.776,18.282,42,21,42s5-2.224,5-4.941V26h11.059C39.776,26,42,23.718,42,21S39.776,16,37.059,16z">
+                        </path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Qrcode part (right section) -->
+        <div class="container flex flex-col flex-wrap w-full justify-center place-items-center gap-4">
+            <p id="status" class="font-Comfortaa text-lg"></p>
+            <div id="qrcode"
+                class="container text-center w-[28rem] h-[28rem] shadow-qr-2 gradient-border md:shrink-0 p-[0.15rem]"
+                style="display: none;">
+                <div class="bg-[#d9e7ff] h-full w-full rounded-[3px] flex justify-center place-items-center">
+                    <img class="w-full" src="" alt="">
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div id="input-modal"
+        class="hidden fixed z-[10] left-0 top-0 w-full h-full overflow-auto bg-[rgb(0,0,0)] bg-[rgba(0,0,0,0.3)]">
+        <div class="bg-white m-auto mt-40 p-5 h-[24rem] w-[18rem] rounded-lg relative shadow-closebtn-shadow">
+            <div id="close-modal"
+                class="z-10 rounded-full bg-white h-9 w-9 absolute -top-5 -right-4 shadow-closebtn-shadow flex justify-center place-items-center hover:bg-gray-100 hover:cursor-pointer active:scale-50">
+                <svg width="13" height="13" viewPort="0 0 13 13" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <line x1="0" y1="13" x2="13" y2="0" stroke="black" stroke-width="2" />
+                    <line x1="0" y1="0" x2="13" y2="13" stroke="black" stroke-width="2" />
+                </svg>
+            </div>
+            <label class="relative block top-4">
+                <span class="sr-only">Username</span>
+                <input id="username"
+                    class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border rounded-md py-2 pl-3 pr-3 shadow-sm focus:outline-none focus:border-[#02ad77] focus:ring-[#d9e7ff] focus:ring-1 focus:-translate-y-1 focus:shadow-closebtn-shadow sm:text-sm"
+                    placeholder="Username" type="text" name="username" />
+            </label>
+            <label class="relative block top-8">
+                <span class="sr-only">Description</span>
+                <textarea id="description"
+                    class=" max-h-56 min-h-[12rem] placeholder:italic placeholder:text-slate-400 block bg-white w-full border rounded-md py-2 pl-3 pr-3 shadow-sm focus:outline-none focus:border-[#02ad77] focus:ring-[#d9e7ff] focus:ring-1 focus:-translate-y-1 focus:shadow-closebtn-shadow sm:text-sm"
+                    placeholder="Description" type="text" name="description"></textarea>
+            </label>
+            <div id="add_account"
+                class="rounded-full bg-white h-10 w-10 absolute bottom-4 right-3.5 shadow-closebtn-shadow flex justify-center place-items-center hover:bg-gray-100 hover:cursor-pointer active:translate-y-1">
+                <svg width="20" height="20" viewPort="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <line x1="0" y1="10" x2="20" y2="10" stroke="#303030" stroke-width="2" />
+                    <line x1="10" y1="0" x2="10" y2="20" stroke="#303030" stroke-width="2" />
+                </svg>
+            </div>
+
+        </div>
+
+        <div id="toast"
+            class="flex opacity-0 absolute right-1 bottom-2 p-2 max-w-sm bg-white rounded-xl shadow-lg items-center space-x-4">
+            <div class="shrink-0">
+                <img class="h-8 w-8" src="./images/warning.png" alt="Warning">
+            </div>
+            <div>
+                <div class="text-l font-medium text-black">Ooops!</div>
+                <p class="text-slate-500">You missed something!</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="./js/main.js"></script>
+</body>
+
+</html>

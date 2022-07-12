@@ -10,7 +10,7 @@ Clone this project
 
 ```bash
 > git clone https://github.com/dimelang/whatsapp-bot.git
-> cd whatsapp-bots
+> cd whatsapp-bot
 ```
 
 Install the dependecies (server):
